@@ -72,7 +72,7 @@
   },
   "lint-staged":{
     "*.{js,vue}": [
-        "eslint",
+        "npm run eslint",
         "git add"
       ]
   }

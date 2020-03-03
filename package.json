@@ -11,8 +11,7 @@
     "dev": "webpack-dev-server --config ./lib/webpack.config.dev.js",
     "eslint": "eslint --ext .js --ext .vue src/",
     "eslint-fix": "eslint --fix --ext .js --ext .vue src/",
-    "clean": "rimraf dist",
-    "precommit":"eslint --ext .js --ext .vue src/"
+    "clean": "rimraf dist"
   },
   "author": "",
   "license": "ISC",
@@ -64,5 +63,11 @@
     "vue-eslint-parser": "^7.0.0",
     "vue-style-loader": "^4.1.2",
     "vue-template-compiler": "^2.6.11"
-  }
+  },
+    "husky":{
+        "hooks":{
+            "pre-commit":"npm run eslint",
+            "pre-publish":"npm run eslint"
+        }
+    }
 }

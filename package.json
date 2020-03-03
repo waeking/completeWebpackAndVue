@@ -11,7 +11,8 @@
     "dev": "webpack-dev-server --config ./lib/webpack.config.dev.js",
     "eslint": "eslint --ext .js --ext .vue src/",
     "eslint-fix": "eslint --fix --ext .js --ext .vue src/",
-    "clean": "rimraf dist"
+    "clean": "rimraf dist",
+    "precommit":"eslint --ext .js --ext .vue src/"
   },
   "author": "",
   "license": "ISC",

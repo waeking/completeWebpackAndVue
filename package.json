@@ -11,7 +11,8 @@
     "dev": "webpack-dev-server --config ./lib/webpack.config.dev.js",
     "eslint": "eslint --ext .js --ext .vue src/",
     "eslint-fix": "eslint --fix --ext .js --ext .vue src/",
-    "clean": "rimraf dist"
+    "clean": "rimraf dist",
+    "precommit":"lint-staged"
   },
   "author": "",
   "license": "ISC",
@@ -65,15 +66,13 @@
     "vue-style-loader": "^4.1.2",
     "vue-template-compiler": "^2.6.11"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
   "lint-staged":{
-    "*.{js,vue}": [
-        "npm run eslint",
-        "git add"
-      ]
+      "linters":{
+        "*.{js,vue}": [
+            "eslint",
+            "git add"
+          ]
+      }
+
   }
 }

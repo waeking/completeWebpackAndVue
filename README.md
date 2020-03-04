@@ -90,4 +90,70 @@ module:{
         ]
 }
 ~~~
+## 速度分析
+> 安装包
+~~~
+    npm i speed-measure-webpack-plugin -D
+~~~
+> 配置
+~~~
+在 webpack.base.js 或者 生产中的配置 webpack.prod.js
 
+const SpeedMeasureWebpackPlugin = require("speed-measure-webpack-plugin")
+
+const smp = new SpeedMeasureWebpackPlugin();
+
+smp.wrap(包裹webpack中的软件即可)
+~~~
+## 体积分析
+> 安装包
+~~~
+    npm i webpack-bundle-analyzer -D
+~~~
+> 配置
+~~~
+在 webpack.base.js 或者 生产中的配置 webpack.prod.js
+
+const {BundleAnalyzerPlugin} = require("webpack-bundle-analyzer")
+
+在 plugins数组中添加 new BundleAnalyzerPlugin()  即可
+~~~
+## 多线程打包
+> 安装包
+~~~
+    npm i thread-loader -D
+~~~
+> 配置
+~~~
+在 webpack.base.js 或者 生产中的配置 webpack.prod.js
+
+ {
+    test:/\.js$/,
+    use:[
+        {
+            loader:"thread-loader",
+            options:{
+                workers:3
+            }
+        },
+        "babel-loader"
+    ]
+}
+~~~
+## 多线程并行压缩
+> 安装包
+~~~
+    npm i terser-webpack-plugin -D
+~~~
+> 配置
+~~~
+在 webpack.base.js 或者 测试中的配置 webpack.test.js
+
+optimization:{
+    minimizer:[
+        new TerserWebpackPlugin({
+            parallel:true
+        })
+    ]
+}
+~~~

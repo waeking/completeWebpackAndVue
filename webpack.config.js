@@ -55,7 +55,15 @@ module.exports = {
             },
             {
                 test:/\.js$/,
-                loader:"babel-loader"
+                use:[
+                    {
+                        loader:"thread-loader",
+                        options:{
+                            workers:3
+                        }
+                    },
+                    "babel-loader"
+                ]
             },
             {
                 test:/\.(jpg|jpeg|gif|png|svg)$/,

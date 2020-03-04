@@ -5,6 +5,7 @@ import './image/done.svg'
 import './style/init.less'
 var root = document.createElement('div')
 document.body.appendChild(root)
+console.log(process.env.NODE_ENV)
 new Vue({
     render: (h) => h(app)
 }).$mount(root)

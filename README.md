@@ -3,7 +3,7 @@
 # 技术选型
 webpack vue eslint mocha 等
 # 项目运行
-### 注意：Node >= 10 and Git >= 2.13.0
+### 环境要求：Node >= 10 and Git >= 2.13.0
 ## 安装 node_modules
 ~~~
 cd completeWebpackAndVue

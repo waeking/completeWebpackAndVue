@@ -17,6 +17,8 @@ function setMp () {
             new HtmlWebpackPlugin({
                 template:path.join(projectRoot,`./src/${fileName}.html`),
                 filename:`${fileName}.html`,
+                chunks: [fileName],
+                isProd: process.env.NODE_ENV === 'production',
                 minify:{
                     html5:true,
                     collapseWhitespace:true,
@@ -54,18 +56,6 @@ module.exports = {
                 loader:"vue-loader"
             },
             {
-                test:/\.js$/,
-                use:[
-                    {
-                        loader:"thread-loader",
-                        options:{
-                            workers:3
-                        }
-                    },
-                    "babel-loader"
-                ]
-            },
-            {
                 test:/\.(jpg|jpeg|gif|png|svg)$/,
                 use:[
                     {
@@ -74,7 +64,31 @@ module.exports = {
                             limit:1024,
                             name:'img/[name]_[contenthash:6].[ext]'
                         }
-                    }
+                    },
+                    /* {
+                        loader:"image-webpack-loader",
+                        options: {
+                            mozjpeg: {
+                              progressive: true,
+                              quality: 65
+                            },
+                            // optipng.enabled: false will disable optipng
+                            optipng: {
+                              enabled: false,
+                            },
+                            pngquant: {
+                              quality: [0.65, 0.90],
+                              speed: 4
+                            },
+                            gifsicle: {
+                              interlaced: false,
+                            },
+                            // the webp option will enable WEBP
+                            webp: {
+                              quality: 75
+                            }
+                          }
+                    } */
                 ]
             }
         ]

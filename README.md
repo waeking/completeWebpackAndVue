@@ -53,6 +53,31 @@ npm run cover
 
 模拟webpack.base.js 测试
 ~~~
+## travis-ci 持续集成
+### 网站：[travis-ci](https://travis-ci.com/)
+用github的账号在这里登录且同步即可。
+~~~
+在项目根目录中配置 .travis.yml 文件
+
+language: node_js
+
+sudo: false
+
+cache:
+    apt: true
+    directories:
+        - node_modules
+
+node_js: stable
+
+install:
+    - npm install -D
+    - cd ./test/smoke/template
+    - npm install -D
+    - cd ../../../
+scripts:
+    - npm test
+~~~
 # 项目配置
 ## eslint
 > 安装包
@@ -103,7 +128,7 @@ const SpeedMeasureWebpackPlugin = require("speed-measure-webpack-plugin")
 
 const smp = new SpeedMeasureWebpackPlugin();
 
-smp.wrap(包裹webpack中的软件即可)
+smp.wrap(包裹webpack中的代码即可)
 ~~~
 ## 体积分析
 > 安装包
@@ -157,3 +182,37 @@ optimization:{
     ]
 }
 ~~~
+## 利用缓存提升二次打包速度
+> 安装包
+~~~
+    方案1：利用babel-loader?cacheDirectory=true
+
+    方案2：利用terserWebpackPlugin
+    optimization:{
+        minimizer:[
+            new TerserWebpackPlugin({
+                parallel:true,
+                cache:true
+            })
+        ]
+    }
+
+    方案3：利用HardSourceWebpackPlugin
+    const HardSourceWebpackPlugin = require("hard-source-webpack-plugin);
+
+    在plugins数组直接new HardSourceWebpackPlugin() 即可
+
+    其中，方案3效果最佳
+~~~
+> 配置
+~~~
+在 webpack.base.js 或者 测试中的配置 webpack.test.js
+
+optimization:{
+    minimizer:[
+        new TerserWebpackPlugin({
+            parallel:true
+        })
+    ]
+}
+~缓存

@@ -5,9 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    
+
 </head>
 <body>
-    
+<script src="./../dll/vue_fbb8a87bba61144a903b.dll.js"></script>
+<script>
+    console.log(htmlWebpackPlugin)
+</script>
+<% if (htmlWebpackPlugin.options.isProd) {%>
+    <script src="埋点链接等"></script>
+    <% } %>
 </body>
 </html>
